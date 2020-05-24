@@ -75,4 +75,9 @@ cities = ['Белград', 'Нови-Сад', 'Приштина', 'Ниш', 'К
 start = int(input('Оберіть номер початкового міста: ')) - 1
 goal = int(input('Оберіть номер кінцевого міста: ')) - 1
 a_search = a_star_search(read_from_file('roads.txt'), start, goal)
+way = a_search[0]
 print(cities[start] + ' - ' + cities[goal] + '  ' + 'Відстань: ' + str(a_search[1]))
+for i in range(len(way)):
+    way[i] = cities[way[i]]
+way = ' -> '.join(way)
+print('Маршрут: ' + way)

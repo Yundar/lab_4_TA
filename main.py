@@ -19,10 +19,10 @@ class PriorityQueue:
         return len(self.elements) == 0
 
 
-def read_from_file(adress):
+def read_from_file(path):
     with open(path, 'rt') as file:
         lines = file.readlines()
-        for i in range(len(f)):
+        for i in range(len(lines)):
             lines[i] = lines[i].replace('\n', '')
             lines[i] = list(map(int, lines[i].split('\t')))
     return lines

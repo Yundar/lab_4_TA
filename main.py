@@ -56,12 +56,23 @@ def a_star_search(graph, start, goal):
                     cost_so_far[next] = new_cost
                     priority = new_cost + heuristic(current, next)
                     queue.add(next, priority)
-                    print(cost_so_far)
                     came_from[next] = current
-                    print(came_from)
-    print(came_from)
-    print(cost_so_far)
-    return came_from, cost_so_far
+    fl = 0
+    current = goal
+    way = [current]
+    while fl != 1:
+        current = came_from[current]
+        if current == start:
+            fl = 1
+        way.append(current)
+    way.reverse()
+    cost = cost_so_far[goal]
+    return way, cost
 
 
-a_star_search(read_from_file('roads.txt'), 4, 12)
+cities = ['Белград', 'Нови-Сад', 'Приштина', 'Ниш', 'Крагуевац', 'Суботица', 'Лесковац', 'Зренянин', 'Панчево',
+          'Чачак', 'Кралево', 'Смедерево', 'Валево', 'Крушевац', 'Шабац']
+start = int(input('Оберіть номер початкового міста: ')) - 1
+goal = int(input('Оберіть номер кінцевого міста: ')) - 1
+a_search = a_star_search(read_from_file('roads.txt'), start, goal)
+print(cities[start] + ' - ' + cities[goal] + '  ' + 'Відстань: ' + str(a_search[1]))
